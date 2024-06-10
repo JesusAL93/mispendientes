@@ -1,0 +1,19 @@
+ion-card {
+    margin: 10px 0;
+  }
+  
+  ion-card-title {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  ion-card-content p {
+    margin: 0;
+    font-size: 1em;
+  }
+  
+.iontoolbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
