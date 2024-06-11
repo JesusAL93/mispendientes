@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-delete',
@@ -6,15 +6,14 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./delete.page.scss'],
 })
 export class DeletePage implements OnInit {
-  @Output() restoreNoteEvent = new EventEmitter<number>();
-  @Output() deletePermanentlyEvent = new EventEmitter<number>();
-  
-  trash: { title: string, description: string, color: string }[] = []; // Cambiar la estructura del objeto trash
+  trash: { title: string, description: string, color: string }[] = [];
+  notes: { title: string, description: string, color: string }[] = [];
 
   constructor() {}
 
   ngOnInit() {
     this.loadTrash();
+    this.loadNotes();
   }
 
   loadTrash() {
@@ -24,19 +23,30 @@ export class DeletePage implements OnInit {
     }
   }
 
-  restoreNote(index: number) {
-    this.restoreNoteEvent.emit(index);
-    this.trash.splice(index, 1); // Eliminar la nota de la papelera
-    this.saveTrash();
-  }
-
-  deletePermanently(index: number) {
-    this.deletePermanentlyEvent.emit(index);
-    this.trash.splice(index, 1); // Eliminar definitivamente la nota de la papelera
-    this.saveTrash();
+  loadNotes() {
+    const savedNotes = localStorage.getItem('notes');
+    if (savedNotes) {
+      this.notes = JSON.parse(savedNotes);
+    }
   }
 
   saveTrash() {
     localStorage.setItem('trash', JSON.stringify(this.trash));
+  }
+
+  saveNotes() {
+    localStorage.setItem('notes', JSON.stringify(this.notes));
+  }
+
+  restoreNoteFromTrash(index: number) {
+    const restoredNote = this.trash.splice(index, 1)[0];
+    this.notes.push(restoredNote);
+    this.saveTrash();
+    this.saveNotes();
+  }
+
+  deletePermanently(index: number) {
+    this.trash.splice(index, 1);
+    this.saveTrash();
   }
 }
