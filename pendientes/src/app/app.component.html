@@ -4,7 +4,11 @@
       <ion-content>
         <ion-list id="inbox-list">
           <ion-list-header>Mis pendientes</ion-list-header>
-          <!-- <ion-note>hi&#64;ionicframework.com</ion-note> -->
+          <ion-item>
+            <ion-label>
+              <h2 class="username">{{ userName }}</h2>
+            </ion-label>
+          </ion-item>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
@@ -13,7 +17,6 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-        
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

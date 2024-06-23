@@ -13,4 +13,32 @@
       <ion-title size="large">Mi cuenta</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Información de usuario</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="saveUserData()">
+        <ion-item>
+          <ion-label position="floating">Nombre de usuario</ion-label>
+          <ion-input [(ngModel)]="username" name="username"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input [(ngModel)]="email" name="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input [(ngModel)]="password" name="password" [type]="passwordFieldType"></ion-input>
+          <ion-button fill="clear" slot="end" (click)="togglePasswordVisibility()">
+            <ion-icon [name]="passwordFieldType === 'password' ? 'eye-off' : 'eye'"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-button expand="full" type="submit">Guardar</ion-button>
+      </form>
+      <!-- Añadir botón de cerrar sesión -->
+      <ion-button expand="full" color="danger" (click)="logout()">Cerrar sesión</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

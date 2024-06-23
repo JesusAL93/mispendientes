@@ -9,27 +9,31 @@ const routes: Routes = [
   },
   {
     path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    loadChildren: () => import('./folder/folder.module').then(m => m.FolderPageModule)
+  },
+  {
+    path: 'folder',
+    loadChildren: () => import('./folder/folder.module').then(m => m.FolderPageModule)
   },
   {
     path: 'myprofile',
-    loadChildren: () => import('./myprofile/myprofile.module').then( m => m.MyprofilePageModule)
+    loadChildren: () => import('./myprofile/myprofile.module').then(m => m.MyprofilePageModule)
   },
   {
     path: 'notes',
-    loadChildren: () => import('./notes/notes.module').then( m => m.NotesPageModule)
+    loadChildren: () => import('./notes/notes.module').then(m => m.NotesPageModule)
   },
   {
     path: 'delete',
-    loadChildren: () => import('./delete/delete.module').then( m => m.DeletePageModule)
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./delete/delete.module').then(m => m.DeletePageModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
+  },
+  {
+    path: 'report',
+    loadChildren: () => import('./report/report.module').then( m => m.ReportPageModule)
   },
 ];
 

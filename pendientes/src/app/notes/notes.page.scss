@@ -17,3 +17,25 @@ ion-card {
     flex-direction: row;
     justify-content: space-around;
 }
+
+ion-fab {
+  margin-bottom: 20px; /* Ajusta la distancia desde el fondo */
+  margin-right: 20px;  /* Ajusta la distancia desde la derecha */
+}
+
+ion-fab-button {
+  --background: #3880ff; /* Cambia el color de fondo del botón si es necesario */
+}
+
+.note-image {
+  max-width: 100px;
+  max-height: 100px;
+  display: block;
+  margin-top: 10px;
+}
+
+.selected-image {
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 10px;
+}
