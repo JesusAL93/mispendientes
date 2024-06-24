@@ -1,6 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Reportes</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentActionSheet()">Actualizar</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -10,4 +16,42 @@
       <ion-title size="large">Reportes</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Creadas</ion-label>
+      <ion-note slot="end">{{ countN }}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>Eliminadas</ion-label>
+      <ion-note slot="end">{{ countD }}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>Restauradas</ion-label>
+      <ion-note slot="end">{{ countR }}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total de notas</ion-label>
+      <ion-note slot="end">{{ getTotalNotesCount() }}</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item-divider color="light">Notas almacenadas</ion-item-divider>
+    <ion-item *ngFor="let nota of notes">
+      <ion-label>{{ nota.title }}</ion-label>
+      <!-- <ion-note slot="end">{{ nota.description }}</ion-note> -->
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item-divider color="light">Notas eliminadas</ion-item-divider>
+    <ion-item *ngFor="let nota of trash">
+      <ion-label>{{ nota.title }}</ion-label>
+      <ion-note slot="end">{{ nota.description }}</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <canvas id="notesChart"></canvas>
+
 </ion-content>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { addIcons } from 'ionicons';
-import { personCircle, personCircleSharp, archive, archiveSharp, trash, trashSharp } from 'ionicons/icons';
+import { personCircle, personCircleSharp, archive, archiveSharp, trash, trashSharp, cloudUpload, cloudCircleSharp } from 'ionicons/icons';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +12,13 @@ export class AppComponent implements OnInit {
     { title: 'Cuenta', url: '/myprofile', icon: 'person-circle' },
     { title: 'Notas', url: '/notes', icon: 'archive' },
     { title: 'Papelera', url: '/delete', icon: 'trash' },
+    { title: 'Sincrónizar copia', url: '/upload-notes', icon: 'cloud-upload' },
   ];
   public userName: string = '';
 
   constructor() {
     addIcons({
-      personCircle, personCircleSharp, archive, archiveSharp, trash, trashSharp
+      personCircle, personCircleSharp, archive, archiveSharp, trash, trashSharp, cloudUpload, cloudCircleSharp
     });
   }
 

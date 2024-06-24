@@ -10,6 +10,8 @@ export class RegisterPage implements OnInit {
   username: string = '';
   email: string = '';
   password: string = '';
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye-off';
 
   constructor(
     private menu: MenuController, 
@@ -56,5 +58,10 @@ export class RegisterPage implements OnInit {
 
     // Redirigir a la página de inicio de sesión
     this.navCtrl.navigateForward('/folder'); // Asegúrate de que la ruta sea correcta
+  }
+
+  togglePasswordVisibility() {
+    this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
 }

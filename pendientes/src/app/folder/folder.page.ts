@@ -11,6 +11,9 @@ export class FolderPage implements OnInit {
   public folder!: string;
   public username: string = '';
   public password: string = '';
+  public passwordType: string = 'password';
+  public passwordIcon: string = 'eye-off';
+
   private activatedRoute = inject(ActivatedRoute);
   private menu = inject(MenuController);
   private router = inject(Router);
@@ -52,5 +55,10 @@ export class FolderPage implements OnInit {
       });
       await alert.present();
     }
+  }
+
+  togglePasswordVisibility() {
+    this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
 }

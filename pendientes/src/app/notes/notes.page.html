@@ -6,40 +6,52 @@
     <div class="iontoolbar">
       <ion-title>Notas</ion-title>
       <ion-searchbar [(ngModel)]="searchTerm" placeholder="Buscar"></ion-searchbar>
-    </div>
-    <ion-buttons slot="end">
-      <ion-button (click)="goToReportPage()">
-        <ion-icon slot="icon-only" name="stats"></ion-icon>
+      <ion-button (click)="toggleView()">
+        <ion-icon [name]="isGridView ? 'list' : 'grid'"></ion-icon>
       </ion-button>
-    </ion-buttons>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-fab vertical="bottom" slot="fixed" class="reports">
+    <ion-fab-button (click)="goToReportPage()">
+      <ion-icon name="document-text"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="openAddNoteModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
   <ion-list>
-    <ion-card *ngFor="let note of filterNotes(); let i = index" [color]="note.color" (click)="openViewNoteModal(note)">
-      <ion-card-header>
-        <ion-card-title>{{ note.title }}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>{{ note.description }}</p>
-        <img *ngIf="note.imageUrl" [src]="note.imageUrl" class="note-image">
-        <ion-button fill="clear" color="danger" (click)="deleteNoteWithEvent(i, $event)">
-          <ion-icon slot="icon-only" name="trash"></ion-icon>
-        </ion-button>
-        <ion-button fill="clear" color="primary" (click)="editNoteWithEvent(i, $event)">
-          <ion-icon slot="icon-only" name="create"></ion-icon>
-        </ion-button>
-      </ion-card-content>
-    </ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let note of filterNotes(); let i = index" [size]="isGridView ? '6' : '12'">
+          <ion-card [color]="note.color" (click)="openViewNoteModal(note)" class="note-card">
+            <ion-card-header>
+              <ion-card-title>{{ note.title }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="note-card-content">
+              <p>{{ note.description }}</p>
+              <img *ngIf="note.imageUrl" [src]="note.imageUrl" class="note-image">
+              <div class="note-buttons">
+                <ion-button fill="clear" color="danger" (click)="deleteNoteWithEvent(i, $event)">
+                  <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-button>
+                <ion-button fill="clear" color="primary" (click)="editNoteWithEvent(i, $event)">
+                  <ion-icon slot="icon-only" name="create"></ion-icon>
+                </ion-button>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-list>
 </ion-content>
 
+<!-- Crear nota -->
 <ion-modal [isOpen]="isModalOpen" (willDismiss)="closeModal()">
   <ng-template>
     <ion-header>
@@ -95,15 +107,25 @@
         <ion-buttons slot="end">
           <ion-button (click)="closeViewModal()">Cerrar</ion-button>
         </ion-buttons>
+        <ion-buttons slot="start">
+          <ion-button (click)="openShareModal()">
+            <ion-icon name="share-alt" class="share"></ion-icon>
+          </ion-button>
+
+          <ion-buttons slot="start">
+            <ion-button (click)="openShareModal()">
+              <ion-icon name="share-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-item>
-        <ion-label>Título</ion-label>
         <ion-text>{{ selectedNote?.title }}</ion-text>
       </ion-item>
       <ion-item>
-        <ion-label>Descripción</ion-label>
         <ion-text>{{ selectedNote?.description }}</ion-text>
       </ion-item>
       <ion-item *ngIf="selectedNote?.imageUrl">
@@ -112,3 +134,35 @@
     </ion-content>
   </ng-template>
 </ion-modal>
+
+<!-- Modal para opciones de compartir -->
+<ion-modal [isOpen]="isShareModalOpen" (willDismiss)="closeShareModal()" class="share-modal">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Compartir datos</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-item (click)="shareAsText()">
+        <img src="../../assets/txt-svgrepo-com.svg" alt="text Icon" />
+        <span>Compartir Texto</span>
+      </ion-item>
+      <ion-item (click)="shareAsPdf()">
+        <img src="../../assets/pdf-svgrepo-com.svg" alt="PDF Icon" />
+        <span>Compartir como PDF</span>
+      </ion-item>
+      <ion-item (click)="shareAstexto()">
+        <img src="../../assets/txt-svgrepo-com.svg" alt="txt Icon" />
+        <span>Compartir como archivo de texto .txt</span>
+      </ion-item>
+      <ion-item (click)="shareAsImage()">
+        <img src="../../assets/picture-svgrepo-com.svg" alt="img Icon" />
+        <span>Compartir Imagen</span>
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+

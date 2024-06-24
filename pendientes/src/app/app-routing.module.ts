@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'report',
     loadChildren: () => import('./report/report.module').then( m => m.ReportPageModule)
   },
+  {
+    path: 'upload-notes',
+    loadChildren: () => import('./upload-notes/upload-notes.module').then( m => m.UploadNotesPageModule)
+  },
 ];
 
 @NgModule({

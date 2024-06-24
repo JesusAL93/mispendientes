@@ -14,9 +14,19 @@
             </ion-item>
             <ion-item>
               <ion-label position="floating">Contraseña</ion-label>
-              <ion-input type="password" [(ngModel)]="password"></ion-input>
+              <ion-input [type]="passwordType" [(ngModel)]="password"></ion-input>
+              <ion-icon
+                slot="end"
+                [name]="passwordIcon"
+                (click)="togglePasswordVisibility()"
+                class="password-toggle-icon">
+              </ion-icon>
             </ion-item>
             <ion-button expand="full" (click)="login()">Ingresar</ion-button>
+            <ion-button expand="full" fill="outline" class="google-login-button button-inner">
+              <ion-icon slot="start" src="../../assets/google-color-icon.svg"></ion-icon>
+              Iniciar sesión
+            </ion-button>
             <div class="ion-text-center">
               <a [routerLink]="['/register']">Registrarse</a>
             </div>

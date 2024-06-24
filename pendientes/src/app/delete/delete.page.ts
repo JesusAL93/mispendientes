@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Note } from '../interface/nota.interface';
 
 @Component({
   selector: 'app-delete',
@@ -6,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./delete.page.scss'],
 })
 export class DeletePage implements OnInit {
-  trash: { title: string, description: string, color: string }[] = [];
-  notes: { title: string, description: string, color: string }[] = [];
+  trash: Note[] = [];
+  notes: Note[] = [];
 
   constructor() {}
 
@@ -40,6 +41,7 @@ export class DeletePage implements OnInit {
 
   restoreNoteFromTrash(index: number) {
     const restoredNote = this.trash.splice(index, 1)[0];
+    restoredNote.id = this.generateUniqueId('r'); // Generar identificador único para notas restauradas
     this.notes.push(restoredNote);
     this.saveTrash();
     this.saveNotes();
@@ -48,5 +50,9 @@ export class DeletePage implements OnInit {
   deletePermanently(index: number) {
     this.trash.splice(index, 1);
     this.saveTrash();
+  }
+
+  private generateUniqueId(prefix: string): string {
+    return `${prefix}`;
   }
 }

@@ -39,3 +39,107 @@ ion-fab-button {
   max-height: 100px;
   margin-top: 10px;
 }
+
+.reports{
+  margin-bottom: 20px; /* Ajusta la distancia desde el fondo */
+  margin-left: 20px;  /* Ajusta la distancia desde la derecha */
+}
+
+.full-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+// Estilos del modal para compartir la nota
+.share-modal {
+  --height: 40%;
+  --width: 100%;
+  --border-radius: 20px 20px 0 0;
+  --position: fixed;
+  --bottom: 0;
+  border-top: 1px solid #c1c1c1;
+  
+  ion-header {
+    ion-toolbar {
+      ion-title {
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+    }
+  }
+
+  ion-content {
+    padding: 16px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    ion-item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 10px;
+      cursor: pointer;
+
+      img {
+        width: 24px; // Ajusta el tamaño según sea necesario
+        height: 24px; // Ajusta el tamaño según sea necesario
+        margin-right: 8px; // Espacio entre el icono y el texto
+      }
+
+      span {
+        flex: 1;
+        font-size: 1em;
+      }
+
+      &:hover {
+        background-color: #f0f0f0; // Color de fondo al pasar el ratón
+      }
+    }
+  }
+}
+
+
+
+
+.note-card ion-card-content {
+  height: calc(100% - 56px); /* Ajuste de la altura del contenido */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.note-card img.note-image {
+  max-height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.note-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%; /* Ancho del 100% dentro del ion-col */
+  height: 200px; /* Altura fija de 300px */
+  overflow: hidden; /* Para manejar el contenido que se desborde */
+  position: relative;
+}
+
+.note-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 5px;
+  position: absolute;
+  bottom: 10px; /* Ajusta según sea necesario */
+  right: 50px; /* Ajusta según sea necesario */
+  gap: 5px; /* Espacio entre los botones */
+  z-index: 1; /* Asegura que los botones estén por encima del contenido */
+}
+
+.note-card-content {
+  padding-bottom: 40px; /* Ajusta según sea necesario para evitar que el contenido sobrepase los botones */
+}

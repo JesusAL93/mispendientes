@@ -17,6 +17,7 @@
       </ion-card-header>
       <ion-card-content>
         <p>{{ deletedNote.description }}</p>
+        <img *ngIf="deletedNote.imageUrl" [src]="deletedNote.imageUrl" alt="Imagen de la nota eliminada">
         <ion-button fill="clear" color="success" (click)="restoreNoteFromTrash(i)">Restaurar</ion-button>
         <ion-button fill="clear" color="danger" (click)="deletePermanently(i)">Eliminar permanentemente</ion-button>
       </ion-card-content>
