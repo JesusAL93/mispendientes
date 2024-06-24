@@ -13,7 +13,7 @@ import jsPDF from 'jspdf';
 export class NotesPage implements OnInit {
   notes: Note[] = [];
   trash: Note[] = [];
-  newNote: Note = { id: '', title: '', description: '', color: 'primary' };
+  newNote: Note = { id: '', title: '', description: '', color: 'primary', completed: false };
   selectedNote: Note | null = null;
   isEditing: boolean = false;
   editIndex: number | null = null;
@@ -68,7 +68,7 @@ export class NotesPage implements OnInit {
         this.newNote.id = this.generateUniqueId('n'); // Generar identificador único para notas nuevas
         this.notes.push({ ...this.newNote });
       }
-      this.newNote = { id: '', title: '', description: '', color: 'primary' };
+      this.newNote = { id: '', title: '', description: '', color: 'primary', completed: false };
       this.selectedFile = null;
       this.selectedFileUrl = null;
       this.saveNotes();
@@ -115,7 +115,7 @@ export class NotesPage implements OnInit {
   }
 
   cancelEdit() {
-    this.newNote = { id: '', title: '', description: '', color: 'primary' };
+    this.newNote = { id: '', title: '', description: '', color: 'primary', completed: false };
     this.selectedFile = null;
     this.selectedFileUrl = null;
     this.isEditing = false;
@@ -137,7 +137,7 @@ export class NotesPage implements OnInit {
   closeModal() {
     this.isModalOpen = false;
     if (!this.isEditing) {
-      this.newNote = { id: '', title: '', description: '', color: 'primary' };
+      this.newNote = { id: '', title: '', description: '', color: 'primary', completed: false };
       this.selectedFile = null;
       this.selectedFileUrl = null;
     }
@@ -345,4 +345,9 @@ export class NotesPage implements OnInit {
       this.closeShareModal(); // Cierra el modal de compartir
     }
   }
+
+  toggleCompletion(note: Note) {
+    note.completed = !note.completed;
+    this.saveNotes();
+  }  
 }

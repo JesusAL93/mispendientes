@@ -29,7 +29,7 @@
       <ion-row>
         <ion-col *ngFor="let note of filterNotes(); let i = index" [size]="isGridView ? '6' : '12'">
           <ion-card [color]="note.color" (click)="openViewNoteModal(note)" class="note-card">
-            <ion-card-header>
+            <ion-card-header class="header-note">
               <ion-card-title>{{ note.title }}</ion-card-title>
             </ion-card-header>
             <ion-card-content class="note-card-content">
@@ -115,6 +115,12 @@
           <ion-buttons slot="start">
             <ion-button (click)="openShareModal()">
               <ion-icon name="share-outline"></ion-icon>
+            </ion-button>
+            <ion-button>
+              <ion-icon name="notifications-outline"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear">
+              <ion-checkbox slot="end"></ion-checkbox>
             </ion-button>
           </ion-buttons>
 
