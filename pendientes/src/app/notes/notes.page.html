@@ -13,7 +13,6 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- Crear nota -->
 <ion-content>
   <ion-fab vertical="bottom" slot="fixed" class="reports">
     <ion-fab-button (click)="goToReportPage()">
@@ -92,6 +91,9 @@
             <ion-select-option value="dark">Negro</ion-select-option>
             <ion-select-option value="white">Blanco</ion-select-option>
           </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-datetime display-format="MMM DD, YYYY"></ion-datetime>
         </ion-item>
         <ion-button expand="full" type="submit">{{ isEditing ? 'Guardar Cambios' : 'Agregar Nota' }}</ion-button>
       </form>
